@@ -41,7 +41,7 @@ pipeline {
       steps {
         sh '''
         echo "Deploy process"
-        ssh USER@SERVER -pPORT "hostname"
+        ssh params.USER@params.SERVER -p params.PORT "hostname"
         '''
       }
     }
