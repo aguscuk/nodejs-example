@@ -15,7 +15,7 @@ pipeline {
             pwd
             ls -ltrha
             echo "Build image process"
-            docker build -t aguscuk/nodejs-example:latest .
+            docker build -t aguscuk/nodejs-example:$BUILD_NUMBER .
             '''
           }
         }
@@ -29,7 +29,7 @@ pipeline {
             sh '''
               echo "Push image process"
               docker login docker.io -u $DOC_USR -p $DOC_PSW
-              docker push aguscuk/nodejs-example:latest
+              docker push aguscuk/nodejs-example:$BUILD_NUMBER
             '''
           }
         }
@@ -43,7 +43,7 @@ pipeline {
           sh """
           echo "Deploy process"
           ssh ${params.USER}@${params.SERVER} -p ${params.PORT} 'docker rm -f my-node'
-          ssh ${params.USER}@${params.SERVER} -p ${params.PORT} 'docker run -d --name my-node -p8989:8080 aguscuk/nodejs-example:latest'
+          ssh ${params.USER}@${params.SERVER} -p ${params.PORT} 'docker run -d --name my-node -p8989:8080 aguscuk/nodejs-example:${BUILD_NUMBER}'
           """
         }
         
