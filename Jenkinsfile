@@ -11,7 +11,7 @@ pipeline {
             pwd
             ls -ltrha
             echo "Build image process"
-            sh "docker build -t aguscuk/nodejs-example:latest ."
+            docker build -t aguscuk/nodejs-example:latest .
             '''
           }
         }
@@ -22,7 +22,7 @@ pipeline {
       steps {
         sh '''
          echo "Push image process"
-         sh "docker push aguscuk/nodejs-example:latest"
+         docker push aguscuk/nodejs-example:latest
          '''
       }
     }   
