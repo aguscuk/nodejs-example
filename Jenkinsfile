@@ -10,7 +10,7 @@ pipeline {
       steps {
         script {
           sh '''
-          echo hostname
+          echo $params.USER
           '''
         }
       }
