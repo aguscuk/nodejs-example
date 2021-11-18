@@ -8,9 +8,11 @@ pipeline {
   stages {
     stage('testing') {
       steps {
+        script {
           sh """
           echo ${params.USER}
           """
+        }
       }
     } 
     
