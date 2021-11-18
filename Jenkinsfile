@@ -24,11 +24,15 @@ pipeline {
 
     stage('Push Image') {
       steps {
-        sh '''
-         echo "Push image process"
-         docker login docker.io -u $DOC_USR -p $DOC_PSW'
-         docker push aguscuk/nodejs-example:latest
-         '''
+        script {
+          if (env.GIT_BRANCH == 'origin/development') {
+            sh '''
+              echo "Push image process"
+              docker login docker.io -u $DOC_USR -p $DOC_PSW
+              docker push aguscuk/nodejs-example:latest
+            '''
+          }
+        }
       }
     }   
     
