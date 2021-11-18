@@ -12,7 +12,7 @@ pipeline {
     stage('Deploy') {
       steps {
         script {
-          sh "echo ${params.USER"
+          sh "echo ${params.USER}"
         }
       }
     }
