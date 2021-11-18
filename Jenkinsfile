@@ -1,7 +1,9 @@
 pipeline {
   agent any
   stages {
-        
+    agent {
+      label 'master'
+    }        
     stage('Git Clone') {
       steps {
         sh '''
