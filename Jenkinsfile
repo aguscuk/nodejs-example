@@ -8,9 +8,11 @@ pipeline {
         script {
           if (env.GIT_BRANCH == 'origin/development') {
             sh '''
-             echo "Build image process"
-             sh "docker build -t aguscuk/nodejs-example:latest ."
-             '''
+            pwd
+            ls -ltrha
+            echo "Build image process"
+            sh "docker build -t aguscuk/nodejs-example:latest ."
+            '''
           }
         }
       }
