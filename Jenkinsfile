@@ -12,7 +12,7 @@ pipeline {
     stage('Deploy') {
       steps {
         script {
-          sh '''#!/bin/bash
+          sh '''#!/bin/bash -xe
             echo ${params.USER}
           '''
         }
