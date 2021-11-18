@@ -2,7 +2,8 @@ pipeline {
   agent { label 'master' }
 
   environment {
-      DOC = credentials('dockerhub-aguscuk')
+    DOC = credentials('dockerhub-aguscuk')
+    IMG = "aguscuk/nodejs-example"
   }
   
   stages {
@@ -15,7 +16,7 @@ pipeline {
             pwd
             ls -ltrha
             echo "Build image process"
-            docker build -t aguscuk/nodejs-example:$BUILD_NUMBER .
+            docker build -t $IMG:$BUILD_NUMBER .
             '''
           }
         }
@@ -29,7 +30,7 @@ pipeline {
             sh '''
               echo "Push image process"
               docker login docker.io -u $DOC_USR -p $DOC_PSW
-              docker push aguscuk/nodejs-example:$BUILD_NUMBER
+              docker push $IMG:$BUILD_NUMBER
             '''
           }
         }
@@ -40,11 +41,13 @@ pipeline {
     stage('Deploy') {
       steps {
         script {
-          sh """
-          echo "Deploy process"
-          ssh ${params.USER}@${params.SERVER} -p ${params.PORT} 'docker rm -f my-node'
-          ssh ${params.USER}@${params.SERVER} -p ${params.PORT} 'docker run -d --name my-node -p8989:8080 aguscuk/nodejs-example:${BUILD_NUMBER}'
-          """
+          if (env.GIT_BRANCH == 'origin/development') {
+            sh """
+            echo "Deploy process"
+            ssh ${params.USER}@${params.SERVER} -p ${params.PORT} 'docker rm -f my-node'
+            ssh ${params.USER}@${params.SERVER} -p ${params.PORT} 'docker run -d --name my-node -p8989:8080 ${IMG}:${BUILD_NUMBER}'
+            """
+          }          
         }
         
       }
@@ -56,7 +59,7 @@ pipeline {
           if (env.GIT_BRANCH == 'origin/development') {
             sh '''
               echo "Delete image process"
-              docker rmi aguscuk/nodejs-example:$BUILD_NUMBER
+              docker rmi $IMG:$BUILD_NUMBER
             '''
           }
         }
