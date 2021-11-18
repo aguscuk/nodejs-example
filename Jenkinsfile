@@ -14,9 +14,7 @@ pipeline {
         sh '''
         
         echo "Deploy process"
-        echo "${params.USER}"
-        echo "${params.SERVER}"
-        echo "${params.PORT}"
+        echo "Hello ${params.USER}"
         
         '''
       }
