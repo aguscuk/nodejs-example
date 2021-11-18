@@ -16,7 +16,15 @@ pipeline {
          echo "build process"
          '''
       }
-    }  
+    }
+
+    stage('Push Image') {
+      steps {
+        sh '''
+         echo "Push process"
+         '''
+      }
+    }   
     
             
     stage('Deploy') {
