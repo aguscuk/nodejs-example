@@ -6,24 +6,17 @@
 pipeline {
   agent any
   stages {
-     
-    stage('Git Clone') {
-      agent {
-        label 'master'
-      }      
-      steps {
-        sh '''
-        echo "Git clone process"
-        '''
-      }
-    }
-     
+          
     stage('Build Image') {
       steps {
-        sh '''
-         echo "Build image process"
-         sh "docker build -t ${REGISTRY_DEV}:${env.BUILD_NUMBER} ."
-         '''
+        script {
+          if (env.GIT_BRANCH == 'origin/development') {
+            sh '''
+             echo "Build image process"
+             sh "docker build -t ${REGISTRY_DEV}:${env.BUILD_NUMBER} ."
+             '''
+          }
+        }
       }
     }
 
