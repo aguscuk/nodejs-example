@@ -12,8 +12,8 @@ pipeline {
     stage('Deploy') {
       steps {
         script {
-          sh '''
-            echo "\${params.USER}"
+          sh '''!/usr/bin/env bash
+            echo ${params.USER}
           '''
         }
       }
