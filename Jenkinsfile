@@ -12,12 +12,12 @@ pipeline {
     stage('Deploy') {
       steps {
         sh '''
-        echo "Deploy process"
-        echo params.USER
-        echo params.SERVER
-        echo params.PORT
         
-        //ssh params.USER@params.SERVER -p params.PORT "hostname"
+        echo "Deploy process"
+        echo ${params.USER}
+        echo ${params.SERVER}
+        echo ${params.PORT}
+        
         '''
       }
     }
