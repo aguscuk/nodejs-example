@@ -13,7 +13,7 @@ pipeline {
       steps {
         script {
           sh '''#!/bin/bash -xe
-            echo ${params.USER}
+            echo $params.USER
           '''
         }
       }
