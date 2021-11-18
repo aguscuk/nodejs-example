@@ -8,7 +8,7 @@ pipeline {
           if (env.GIT_BRANCH == 'origin/development') {
             sh '''
              echo "Build image process"
-             sh "docker build -t aguscuk/nodejs-example:${env.BUILD_NUMBER} ."
+             sh "docker build -t aguscuk/nodejs-example:latest ."
              '''
           }
         }
@@ -19,7 +19,7 @@ pipeline {
       steps {
         sh '''
          echo "Push image process"
-         sh "docker push ${REGISTRY_DEV}:${env.BUILD_NUMBER}"
+         sh "docker push aguscuk/nodejs-exmaple:latest"
          '''
       }
     }   
