@@ -11,12 +11,9 @@ pipeline {
             
     stage('Deploy') {
       steps {
-        sh '''
-        
-        echo "Deploy process"
-        echo ${params.USER}
-        
-        '''
+        script {
+          sh "echo ${params.USER"
+        }
       }
     }
   }
