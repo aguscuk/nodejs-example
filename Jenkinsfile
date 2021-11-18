@@ -49,5 +49,20 @@ pipeline {
         
       }
     }
+    
+    stage('Delete Image') {
+      steps {
+        script {
+          if (env.GIT_BRANCH == 'origin/development') {
+            sh '''
+              echo "Delete image process"
+              docker rmi aguscuk/nodejs-example:$BUILD_NUMBER
+            '''
+          }
+        }
+      }
+    }       
+    
+    
   }
 }
