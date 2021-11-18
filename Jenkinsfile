@@ -22,7 +22,7 @@ pipeline {
       steps {
         sh '''
          echo "Push image process"
-         sh "docker push aguscuk/nodejs-exmaple:latest"
+         sh "docker push aguscuk/nodejs-example:latest"
          '''
       }
     }   
