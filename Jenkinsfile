@@ -6,14 +6,18 @@ pipeline {
   }
   
   stages {
-          
-    stage('Deploy') {
+    stage('testing') {
       steps {
         script {
           sh '''
-            echo $params.USER
+          echo hostname
           '''
         }
+      }
+    } 
+    
+    
+    
     
   }
-}
+  
