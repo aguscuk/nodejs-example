@@ -13,7 +13,7 @@ pipeline {
       steps {
         script {
           sh '''
-            echo "${params.USER}"
+            echo ${params.USER}
           '''
         }
       }
