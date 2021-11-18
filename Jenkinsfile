@@ -1,3 +1,8 @@
+  environment {
+    REGISTRY_DEV = 'aguscuk/nodejs-example'
+    DEPLOYMENT_DEV = 'nodejs-example'
+  }
+
 pipeline {
   agent any
   stages {
@@ -16,7 +21,8 @@ pipeline {
     stage('Build Image') {
       steps {
         sh '''
-         echo "build process"
+         echo "Build image process"
+         sh "docker build -t ${REGISTRY_DEV}:${env.BUILD_NUMBER} ."
          '''
       }
     }
@@ -24,7 +30,8 @@ pipeline {
     stage('Push Image') {
       steps {
         sh '''
-         echo "Push process"
+         echo "Push image process"
+         sh "docker push ${REGISTRY_DEV}:${env.BUILD_NUMBER}"
          '''
       }
     }   
