@@ -1,7 +1,7 @@
-  environment {
-    REGISTRY_DEV = 'aguscuk/nodejs-example'
-    DEPLOYMENT_DEV = 'nodejs-example'
-  }
+environment {
+  REGISTRY_DEV = 'aguscuk/nodejs-example'
+  DEPLOYMENT_DEV = 'nodejs-example'
+}
 
 pipeline {
   agent any
