@@ -1,5 +1,9 @@
 pipeline {
   agent { label 'master' }
+
+  environment {
+      DOC = credentials('dockerhub-aguscuk')
+  }
   
   stages {
           
@@ -22,6 +26,7 @@ pipeline {
       steps {
         sh '''
          echo "Push image process"
+         docker login docker.io -u $DOC_USR -p $DOC_PSW'
          docker push aguscuk/nodejs-example:latest
          '''
       }
