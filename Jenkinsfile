@@ -11,7 +11,7 @@ pipeline {
       steps {
         script {
           sh '''
-          echo "user = $params.USER"
+          echo $params.USER
           '''
         }
       }
