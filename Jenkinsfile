@@ -42,6 +42,7 @@ pipeline {
         script {
           sh """
           echo "Deploy process"
+          ssh ${params.USER}@${params.SERVER} -p ${params.PORT} 'docker rm -f my-node'
           ssh ${params.USER}@${params.SERVER} -p ${params.PORT} 'docker run -d --name my-node -p8989:8080 aguscuk/nodejs-example:latest'
           """
         }
