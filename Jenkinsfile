@@ -1,8 +1,3 @@
-environment {
-  REGISTRY_DEV = 'aguscuk/nodejs-example'
-  DEPLOYMENT_DEV = 'nodejs-example'
-}
-
 pipeline {
   agent any
   stages {
@@ -13,7 +8,7 @@ pipeline {
           if (env.GIT_BRANCH == 'origin/development') {
             sh '''
              echo "Build image process"
-             sh "docker build -t ${REGISTRY_DEV}:${env.BUILD_NUMBER} ."
+             sh "docker build -t aguscuk/nodejs-example:${env.BUILD_NUMBER} ."
              '''
           }
         }
