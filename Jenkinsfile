@@ -42,7 +42,7 @@ pipeline {
         script {
           sh """
           echo "Deploy process"
-          ssh params.USER@params.SERVER -p params.PORT 'hostname'
+          ssh ${params.USER}@${params.SERVER} -p ${params.PORT} 'hostname'
           """
         }
         
