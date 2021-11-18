@@ -41,6 +41,7 @@ pipeline {
       steps {
         sh '''
         echo "Deploy process"
+        docker run -d --name node-helloworld -p8989:8080 aguscuk/node-example:latest
         '''
       }
     }
