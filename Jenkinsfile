@@ -9,7 +9,7 @@ pipeline {
     stage('testing') {
       steps {
         script {
-          sh '''
+          sh '''#!/bin/bash
           echo $params.USER
           '''
         }
